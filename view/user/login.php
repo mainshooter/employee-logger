@@ -1,4 +1,4 @@
-<div>
+<div class="col-9">
   <form method="post">
     <label>Medewerkercode</label>
     <input type="number" name="employeeCode">

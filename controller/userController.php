@@ -1,9 +1,15 @@
 <?php
-  require_once APP_PATH 'file';
+  require_once APP_PATH . '/libs/model/FormHandler.class.php';
+  require_once APP_PATH . '/libs/model/User.class.php';
 
   class userController {
     private $FormHandler;
     private $User;
+
+    public function __construct() {
+      $this->FormHandler = new FormHandler();
+      $this->User = new User();
+    }
 
     public function index() {
       $this->login();
@@ -13,8 +19,8 @@
      * Login view and controlls the login
      */
     public function login() {
-      $this->FormHandler->setPostRequired('employeeCode');
-      $this->FormHandler->setPostRequired('employeePassword');
+      $this->FormHandler->setRequired('employeeCode');
+      $this->FormHandler->setRequired('employeePassword');
 
 
       if ($this->FormHandler->run() === true) {
@@ -34,16 +40,32 @@
      * Register a new Employee
      */
     public function register() {
-      $this->FormHandler->setPostRequired('employeeFirstname');
-      $this->FormHandler->setPostRequired('employeeSecondname');
-      $this->FormHandler->setPostRequired('phonenumber');
-      $this->FormHandler->setPostRequired('employeeCode');
-      $this->FormHandler->setPostRequired('employeePassword');
-      $this->FormHandler->setPostRequired('employeeJob');
+      $this->FormHandler->setRequired('employeeFirstname');
+      $this->FormHandler->setRequired('employeeSecondname');
+      $this->FormHandler->setRequired('phonenumber');
+      $this->FormHandler->setRequired('employeeCode');
+      $this->FormHandler->setRequired('employeePassword');
+      $this->FormHandler->setRequired('employeePasswordConfirm');
+      $this->FormHandler->setRequired('employeeJob');
+
+      if ($this->FormHandler->run() === true) {
+
+      }
+      loadHeader();
+        include APP_PATH . '/view/user/register.php';
+      loadFooter();
     }
 
+    /**
+     * controls the logout
+     */
     public function logout() {
-
+      if ($this->User->checkIfClientIsLoggedIn($_SESSION)) {
+        $this->User->logoutClient($_SESSION);
+      }
+      else {
+        redirect();
+      }
     }
 
   }

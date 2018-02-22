@@ -1,6 +1,6 @@
 <?php
-require_once 'model/DatabaseHandler.class.php';
-require_once 'model/Security.class.php';
+  require_once APP_PATH . '/libs/model/DatabaseHandler.class.php';
+  require_once APP_PATH . '/libs/model/Security.class.php';
 
  class User {
    private $Security;
@@ -77,6 +77,10 @@ require_once 'model/Security.class.php';
      else {
        return(false);
      }
+   }
+
+   public function checkIfClientIsLoggedIn($userSession) {
+     
    }
 
    /**
