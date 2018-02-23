@@ -15,6 +15,6 @@
   require_once 'libs/functions.php';
 
   $Router = new Router($GLOBALS['config']['base_url']);
-  $Router->set_default_controller('user');
+  $Router->set_default_controller('employee');
   $Router->proces_router();
 ?>

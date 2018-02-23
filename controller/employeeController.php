@@ -1,14 +1,14 @@
 <?php
   require_once APP_PATH . '/libs/model/FormHandler.class.php';
-  require_once APP_PATH . '/libs/model/User.class.php';
+  require_once APP_PATH . '/libs/model/Employee.class.php';
 
   class userController {
     private $FormHandler;
-    private $User;
+    private $Employee;
 
     public function __construct() {
       $this->FormHandler = new FormHandler();
-      $this->User = new User();
+      $this->Employee = new Employee();
     }
 
     public function index() {
